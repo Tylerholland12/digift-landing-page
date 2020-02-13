@@ -6,3 +6,7 @@ app = Flask("digift", template_folder='application/templates',
             static_folder='application/static')
 app.register_blueprint(home)
 app.register_blueprint(login_route)
+
+
+if __name__ == '__main__':
+    app.run(host="127.0.0.1", port=5001, debug=True)
