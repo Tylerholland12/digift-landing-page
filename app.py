@@ -6,19 +6,9 @@ from pymongo import MongoClient
 
 cluster = MongoClient("mongodb+srv://tyler:tyler@cluster0-zd1wk.mongodb.net/test?retryWrites=true&w=majority")
 
-
 db = cluster['DiGift']
 collection = db['email']
-post = {}
-
-# post = {'name': 'tyler', 'email': 'tyler@gmail.com'}
-# post1 = {'name': 'Nick', 'email': 'nick123@gmail.com'}
-# user1 = {'_id' : '2', 'name' : 'Saar', 'email': 'saar@yahoo.com'}
-
-
-# collection.insert_one(user1)
-# collection.insert_one(post1)
-
+user_email = {}
 
 
 app = Flask("digift", template_folder='application/templates',
@@ -35,9 +25,10 @@ class Email():
 
     def get_email(self):
         if email is None:
-            post.append(self.name, self.email)
+            user_email.append(self.name, self.email)
+            collection.insert_one(user_email)
 
-            return post
+            return self.email
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5001, debug=True)
